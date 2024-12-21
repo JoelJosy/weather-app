@@ -9,7 +9,7 @@ function App() {
     <div className='min-h-screen bg-gradient-to-r from-slate-900 to-slate-700'>
       {/* <FlipWordsText /> */}
       <Search />
-      <WeatherCard city="Dubai" temperature="45" condition="Sunny" iconUrl="" />
+      {/* <WeatherCard city="Dubai" temperature="45" condition="Sunny" iconUrl="" /> */}
     </div>
   )
 }

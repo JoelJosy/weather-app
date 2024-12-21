@@ -1,6 +1,9 @@
 "use client";
 
 import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
+import { WeatherCard } from "./WeatherCard";
+import { getWeather } from "./services/api"
+import { useState, useEffect } from "react";
 
 export function Search() {
     const placeholders = [
@@ -17,9 +20,39 @@ export function Search() {
     e.preventDefault();
     console.log("submitted");
   };
+
+  const [data, setData] = useState(null);
+  const [location, setLocation] = useState("Dubai");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const result = await getWeather(location);
+        setData(result);
+      } catch (error) {
+        setError("Failed to fetch weather data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWeather();
+  }, [location]);
+
+
   return (
-    (<div className="h-[20rem] flex flex-col justify-center  items-center px-4">
-      <PlaceholdersAndVanishInput placeholders={placeholders} onChange={handleChange} onSubmit={onSubmit} />
-    </div>)
+    <div>
+        <div className="h-[20rem] flex flex-col justify-center  items-center px-4">
+            <PlaceholdersAndVanishInput placeholders={placeholders} onChange={handleChange} onSubmit={onSubmit} />
+        </div>
+
+        <WeatherCard data={ data }/>
+    </div>
   );
 }
