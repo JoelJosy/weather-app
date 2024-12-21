@@ -5,7 +5,7 @@ import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
 export function WeatherCard({ city, temperature, condition, iconUrl }) {
   return (
-    <CardContainer className="inter-var">
+    <CardContainer className="h-full inter-var">
       <CardBody
         className="bg-slate-800 text-white shadow-lg w-auto sm:w-[30rem] h-auto rounded-xl p-6 border border-slate-600 hover:shadow-xl hover:shadow-slate-900 transition-all duration-300 ease-in-out relative">
         {/* City Name */}
