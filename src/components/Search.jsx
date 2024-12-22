@@ -14,13 +14,14 @@ export function Search() {
       ];
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    setSearchQuery(e.target.value);
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted");
+    setLocation(searchQuery);
   };
 
+  const [searchQuery, setSearchQuery] = useState(null);
   const [data, setData] = useState(null);
   const [location, setLocation] = useState("Dubai");
   const [loading, setLoading] = useState(false);
