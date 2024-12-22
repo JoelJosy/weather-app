@@ -10,7 +10,7 @@ export function Search() {
         "Is it raining in Tokyo?",
         "Is it sunny in Paris?",
         "How windy is it in Cape Town?",
-        "Type in any city you want!"
+        "Type in any city or country"
       ];
 
   const handleChange = (e) => {
