@@ -48,11 +48,10 @@ export function Search() {
 
 
   return (
-    <div>
-        <div className="h-[20rem] flex flex-col justify-center  items-center px-4">
+    <div className="flex flex-col justify-center">
+        <div className="h-[12rem] mt-20 flex flex-col justify-center items-center px-4">
             <PlaceholdersAndVanishInput placeholders={placeholders} onChange={handleChange} onSubmit={onSubmit} />
         </div>
-
         <WeatherCard data={ data }/>
     </div>
   );

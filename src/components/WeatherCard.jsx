@@ -34,7 +34,7 @@ const setIcon = (condn) => {
   }
 }
 
-export function WeatherCard({ data }) {
+export function WeatherCard({ data, onSubmit }) {
   // Handle the case when data is null
   if (!data) {
     return (
@@ -88,7 +88,7 @@ export function WeatherCard({ data }) {
         {/* Additional Weather Data */}
         <CardItem translateZ="40">
           
-        <div className="mt-4 flex gap-20">
+        <div className="flex gap-20">
           <div className="flex flex-col gap-5">
             {/* Wind Speed */}
             <div className="flex items-center justify-start space-x-2">
@@ -121,7 +121,7 @@ export function WeatherCard({ data }) {
         
 
         {/* Action Buttons */}
-        <div className="flex justify-between items-center mt-8">
+        <div className="flex justify-between items-center mt-10">
           <CardItem
             translateZ={20}
             as="a"
