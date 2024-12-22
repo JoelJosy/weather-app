@@ -1,7 +1,38 @@
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
+import { FaWind, FaEye, FaTemperatureHalf, FaDroplet } from "react-icons/fa6";
+import { IoMdSunny, IoMdRainy, IoMdCloudy, IoMdSnow, IoMdThunderstorm } from "react-icons/io";
+import { TbTemperatureCelsius } from "react-icons/tb"
+import { BsCloudHaze2Fill, BsCloudDrizzleFill } from "react-icons/bs"
 
 const kelvinToCelsius = (kelvin) => (kelvin - 273.15).toFixed(1);
+
+let icon;
+const setIcon = (condn) => {
+  switch (condn) {
+    case 'Clouds' :
+      icon = <IoMdCloudy />
+      break
+    case 'Hazy' :
+      icon = <BsCloudHaze2Fill />
+      break
+    case 'Rain' :
+      icon = <IoMdRainy />
+      break
+    case 'Clear' :
+      icon = <IoMdSunny />
+      break
+    case 'Drizzle' :
+      icon = <BsCloudDrizzleFill />
+      break
+    case 'Snow' :
+      icon = <IoMdSnow />
+      break
+    case 'Thunderstorm' :
+      icon = <IoMdThunderstorm />
+      break
+  }
+}
 
 export function WeatherCard({ data }) {
   // Handle the case when data is null
@@ -9,8 +40,7 @@ export function WeatherCard({ data }) {
     return <div>Loading...</div>; // Or show an error message if data is not available
   }
 
-  // Define a base URL for the weather icon
-  const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+  setIcon(data.weather[0].main)
 
   return (
     <CardContainer className="inter-var">
@@ -22,11 +52,9 @@ export function WeatherCard({ data }) {
             {data.name}
           </CardItem>
           <CardItem translateZ="50" className="w-12 h-12">
-            <img
-              src={iconUrl || "https://via.placeholder.com/100"}
-              alt="Weather Icon"
-              className="w-full h-full object-contain"
-            />
+          <CardItem translateZ="50" className="w-12 h-12 text-4xl">
+            {icon || <IoMdSunny />}
+          </CardItem>
           </CardItem>
         </div>
 
@@ -46,47 +74,34 @@ export function WeatherCard({ data }) {
         </CardItem>
 
         {/* Additional Weather Data */}
-        <div className="mt-4 space-y-2">
-          {/* Wind Speed */}
-          <div className="flex items-center justify-start space-x-2">
-            <img
-              src="https://img.icons8.com/ios/50/000000/wind.png"
-              alt="Wind Icon"
-              className="w-6 h-6"
-            />
-            <p className="text-sm text-slate-300">{data.wind.speed} m/s</p>
-          </div>
+        <CardItem translateZ="40">
+          <div className="mt-4 space-y-2">
+            {/* Wind Speed */}
+            <div className="flex items-center justify-start space-x-2">
+              <FaWind />
+              <p className="text-sm text-slate-300">{data.wind.speed} m/s</p>
+            </div>
 
-          {/* Humidity */}
-          <div className="flex items-center justify-start space-x-2">
-            <img
-              src="https://img.icons8.com/ios/50/000000/humidity.png"
-              alt="Humidity Icon"
-              className="w-6 h-6"
-            />
-            <p className="text-sm text-slate-300">{data.main.humidity}%</p>
-          </div>
+            {/* Humidity */}
+            <div className="flex items-center justify-start space-x-2">
+              <FaDroplet />
+              <p className="text-sm text-slate-300">{data.main.humidity}%</p>
+            </div>
 
-          {/* Feels Like */}
-          <div className="flex items-center justify-start space-x-2">
-            <img
-              src="https://img.icons8.com/ios/50/000000/temperature.png"
-              alt="Feels Like Icon"
-              className="w-6 h-6"
-            />
-            <p className="text-sm text-slate-300">{kelvinToCelsius(data.main.feels_like)}°C</p>
-          </div>
+            {/* Feels Like */}
+            <div className="flex items-center justify-start space-x-2">
+              <FaTemperatureHalf />
+              <p className="text-sm text-slate-300">{kelvinToCelsius(data.main.feels_like)}°C</p>
+            </div>
 
-          {/* Visibility */}
-          <div className="flex items-center justify-start space-x-2">
-            <img
-              src="https://img.icons8.com/ios/50/invisible.png"
-              alt="Visibility Icon"
-              className="w-6 h-6"
-            />
-            <p className="text-sm text-slate-300">{data.visibility / 1000} km</p>
+            {/* Visibility */}
+            <div className="flex items-center justify-start space-x-2">
+            <FaEye />
+              <p className="text-sm text-slate-300">{data.visibility / 1000} km</p>
+            </div>
           </div>
-        </div>
+        </CardItem>
+        
 
         {/* Action Buttons */}
         <div className="flex justify-between items-center mt-8">
