@@ -8,8 +8,10 @@ export const getWeather = async (location) => {
 }
 
 // const check = async () => {
-//     const data = await getWeather("Dubai")
+//     const data = await getWeather("aadads")
 //     console.log(data);
 // }
+
+// data.cod = '404'
 
 // check()

@@ -47,6 +47,16 @@ export function WeatherCard({ data, onSubmit }) {
     )
   }
 
+  if (data.cod === '404') {
+    return (
+      <div className="flex justify-center items-center">
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-white text-xl">Invalid Location Entered</p>
+        </div>
+      </div>
+      )
+  }
+
   setIcon(data.weather[0].main)
 
   return (
